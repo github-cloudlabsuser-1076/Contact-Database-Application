@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the App Service."
+            }
+        },
+        "location": {
+            "type": "string",
+            "metadata": {
+                "description": "The location of the App Service."
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2018-11-01",
+            "name": "[parameters('name')]",
+            "location": "[parameters('location')]",
+            "kind": "app",
+            "properties": {
+             
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "WEBSITE_RUN_FROM_PACKAGE",
+                            "value": "1"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
